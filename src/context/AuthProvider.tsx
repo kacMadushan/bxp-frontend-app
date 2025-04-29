@@ -7,6 +7,7 @@ import {
     type ReactNode
 } from 'react';
 import { ICredentials, IUser } from '../types/user.interface';
+import { user_data } from '../utils/constants';
 
 interface IAuthContext {
     user: IUser | null;
@@ -29,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const userLogin = async (credentials: ICredentials): Promise<void> => {
         return new Promise((resolve, reject) => {
-            if (credentials.email === 'admin@domain.com' && credentials.password === 'admin@123') {
+            if (credentials.email === user_data.email && credentials.password === user_data.password) {
                 setUser(mock_user);
                 setIsAuthenticated(true);
                 localStorage.setItem('user', JSON.stringify(mock_user));

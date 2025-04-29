@@ -4,6 +4,7 @@ import { Form, Input, Button, Typography, message } from 'antd';
 
 import { ICredentials } from '../types/user.interface';
 import { useAuthContext } from '../context/AuthProvider';
+import { user_data } from '../utils/constants';
 
 const Title = Typography.Title;
 const FormItem = Form.Item;
@@ -30,20 +31,25 @@ const LoginForm = () => {
         <Fragment>
             {displayMessageContext}
             <Title level={2}>Login</Title>
-            <Form layout='vertical' onFinish={onSubmitLogin}>
+            <Form
+                layout='vertical'
+                onFinish={onSubmitLogin}
+                initialValues={{ email: user_data.email, password: user_data.password }}
+            >
                 <FormItem
+                    className='mb-4'
                     label='Username'
                     name='email'
                     rules={[{ required: true, message: 'Please enter username' }]}
                 >
-                    <Input />
+                    <Input className='py-2' />
                 </FormItem>
                 <FormItem
                     label='Password'
                     name='password'
                     rules={[{ required: true, message: 'Please enter password' }]}
                 >
-                    <InputPassword />
+                    <InputPassword className='py-2' />
                 </FormItem>
                 <FormItem>
                     <Button className='w-full rounded-md py-5 shadow-none hover:shadow-none' type='primary' htmlType='submit'>Login</Button>
