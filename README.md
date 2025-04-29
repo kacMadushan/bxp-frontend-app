@@ -24,3 +24,14 @@ Implement crud operations in bxp app:
 - Attributes list
 - User profile
 - User authentication 
+
+## Tech Stack
+Using tech stack:
+
+- React
+- TypeScript
+- React Router - (v6.2.1)
+- Ant Design
+- Ant Icons
+- Tailwind CSS
+- uuid
