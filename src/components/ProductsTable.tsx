@@ -18,7 +18,8 @@ const ProductsTable = ({ products, getCategoryById }: ProductsTableProps) => {
                     {
                         title: 'ID',
                         dataIndex: 'id',
-                        key: 'id'
+                        key: 'id',
+                        sorter: (a, b) => a.id - b.id,
                     },
                     {
                         title: 'Product Name',
