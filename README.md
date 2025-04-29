@@ -1,46 +1,26 @@
-# Getting Started with Create React App
+# Building a back-office application
+A back-office application used to manage admin business processes like payroll, user, products and etc.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Use cases
+The user shall be able to:
 
-## Available Scripts
+    - Login to the back office with email and password
+    - See and navigate a product category tree
+    - See a list of products belonging to a specific category in pages of 5, 10, 20, 50 elements per page
+    - Sort product list by different fields (e.g., id, name) in ascending/descending order
+    - View the product information on a separate product details page
+    - Add/modify attributes of a product. Possible attribute types: "number", "text", "url", "tags", "boolean"
+    - See the last modified product in a custom widget on top of the page (custom here means that you have to implement a new component, not using the one that the component library of your choice provides)
+    - Logout from the back office
 
-In the project directory, you can run:
+### Implementing key features
+Implement crud operations in back-office:
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+    - Add new product
+    - Edit and delete product
+    - Products listing - (sort: abc, search, limit)
+    - Add new attribute value
+    - Edit and delete attribute
+    - Attributes list
+    - User profile
+    - User authentication 

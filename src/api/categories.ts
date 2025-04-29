@@ -1,0 +1,16 @@
+export const categories = [
+    { id: 1, name: 'Electronics' },
+    { id: 2, name: 'Computers', parent_id: 1 },
+    { id: 3, name: 'Laptops', parent_id: 2 },
+    { id: 4, name: 'Desktop', parent_id: 2 },
+    { id: 5, name: 'Mobile & Tablets', parent_id: 1 },
+    { id: 6, name: 'Smartphones', parent_id: 5 },
+    { id: 7, name: 'Tablets', parent_id: 5 },
+    { id: 8, name: 'Home & Kitchen Appliances' },
+    { id: 9, name: 'Home Appliances', parent_id: 8 },
+    { id: 10, name: 'Kitchen Appliances', parent_id: 8 },
+    { id: 11, name: 'Furniture' },
+    { id: 12, name: 'Center Tables', parent_id: 11 },
+    { id: 13, name: 'Dining Sets', parent_id: 11 },
+    { id: 14, name: 'Office FurnIture', parent_id: 11 },
+];

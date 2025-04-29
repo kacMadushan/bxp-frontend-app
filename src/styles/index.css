@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --clr_gray_100: #f2f2f2;
+    --clr_gray_200: #ebebeb;
+    --clr_gray_300: #e6e6e6;
+    --clr_gray_400: #ebebeb;
+    --clr_gray_500: #c9c9c9;
+    --clr_gray_600: #a8a8a8;
+    --clr_gray_700: #8f8f8f;
+    --clr_gray_800: #7d7d7d;
+    --clr_gray_900: #666666;
+    --clr_gray_1000: #171717;
+
+    --primary_font_family: "Poppins", sans-serif;
+}
+
+@layer base {
+    body {
+        @apply m-0 p-0 bg-gray_100 text-gray_900;
+    }
+}
+
+@layer components {
+    .page-wrapper {
+        @apply border-0;
+    }
+
+    .logout-btn.ant-btn.ant-btn-color-default {
+        @apply border-none h-6 shadow-none bg-transparent hover:bg-transparent hover:text-gray_1000;
+    }
+}

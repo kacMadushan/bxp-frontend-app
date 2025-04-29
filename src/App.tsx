@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { memo, lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Spinner from './components/Spinner';
+import PrivateRoute from './components/PrivateRoute';
+import AppLayout from './components/AppLayout';
 
-export default App;
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const CreateProductPage = lazy(() => import('./pages/CreateProductPage'));
+const EditProductPage = lazy(() => import('./pages/EditProductPage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const ProductDetailsPage = lazy(() => import('./pages/ProductDetailsPage'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+
+const App = () => {
+    const renderAppLayout = (
+        <PrivateRoute>
+            <AppLayout />
+        </PrivateRoute>
+    )
+    return (
+        <Suspense fallback={<Spinner />}>
+            <Routes>
+                <Route element={renderAppLayout} errorElement={<NotFoundPage />}>
+                    <Route path='/products' element={<ProductsPage />} />
+                    <Route path='/products/category/:category' element={<ProductsPage />} />
+                    <Route path='/products/:productId' element={<ProductDetailsPage />} />
+                    <Route path='/create' element={<CreateProductPage />} />
+                    <Route path='/edit/:productId' element={<EditProductPage />} />
+                    <Route path='/profile' element={<ProfilePage />} />
+                </Route>
+                <Route path='/login' element={<LoginPage />} />
+                <Route path='*' element={<NotFoundPage />} />
+            </Routes>
+        </Suspense>
+    );
+};
+
+export default memo(App);
