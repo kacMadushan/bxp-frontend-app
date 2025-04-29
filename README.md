@@ -35,3 +35,21 @@ Using tech stack:
 - Ant Icons
 - Tailwind CSS
 - uuid
+
+## Quick Start
+Follow these steps to set up the project locally on your machine.
+
+Make sure you have the following installed on your machine. 
+- Git 
+- Node Js 
+- Yarn (Package Manager).
+
+#### Installation
+
+```
+git clone https://github.com/kacMadushan/bxp-frontend-app.git  && cd bxp-frontend-app
+yarn install
+yarn start
+```
+
+Open http://localhost:3000 in your browser to view the project.
