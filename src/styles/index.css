@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
     --clr_gray_100: #f2f2f2;
     --clr_gray_200: #ebebeb;
