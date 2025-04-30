@@ -27,7 +27,7 @@ const ProductsPage = () => {
         .slice((page - 1) * pageSize, page * pageSize)
         .filter(
             (product) =>
-                product.name.toLowerCase().includes(searchQuery.toLowerCase())
+                product.name.toLowerCase().includes(searchQuery.toLowerCase()) && (activeCategory ? product.category_id === activeCategory : product)
         );
     console.log(filteredProducts);
     return (

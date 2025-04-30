@@ -127,50 +127,16 @@ export const products = [
     },
     {
         id: 7,
-        name: 'Tefal Steam Irons',
-        category_id: 9,
-        attributes: [
-            {
-                code: 'Voltage',
-                value: '230'
-            },
-            {
-                code: 'Weight',
-                value: '1290 Grams'
-            },
-            {
-                code: 'Colors',
-                value: 'Blue'
-            }
-        ]
-    },
-    {
-        id: 8,
-        name: 'Drum Vacuum Cleaner',
-        category_id: 9,
-        attributes: [
-            {
-                code: 'Type',
-                value: 'Wet & Dry'
-            },
-            {
-                code: 'Capacity',
-                value: '30 Liters'
-            },
-            {
-                code: 'Weight',
-                value: '9Kg'
-            }
-        ]
-    },
-    {
-        id: 9,
-        name: 'Top Gas Cooker',
-        category_id: 10,
+        name: 'Honor Pad',
+        category_id: 7,
         attributes: [
             {
                 code: 'Storage',
                 value: '128GB'
+            },
+            {
+                code: 'Ram',
+                value: '12GB'
             },
             {
                 code: 'Display',
@@ -182,23 +148,4 @@ export const products = [
             }
         ]
     },
-    {
-        id: 10,
-        name: 'iPhone 16 Pro',
-        category_id: 10,
-        attributes: [
-            {
-                code: 'Storage',
-                value: '128GB'
-            },
-            {
-                code: 'Display',
-                value: '6.3-inch'
-            },
-            {
-                code: 'Colors',
-                value: '4'
-            }
-        ]
-    }
 ];

@@ -34,7 +34,6 @@ Using tech stack:
 - Ant Design
 - Ant Icons
 - Tailwind CSS
-- uuid
 
 ## Quick Start
 Follow these steps to set up the project locally on your machine.
