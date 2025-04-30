@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Layout } from 'antd';
 
 const { Footer } = Layout;
@@ -12,4 +13,4 @@ const AppFooter = () => {
     );
 };
 
-export default AppFooter;
+export default memo(AppFooter);

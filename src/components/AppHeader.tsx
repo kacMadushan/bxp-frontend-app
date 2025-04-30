@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Layout, Flex, Space, Popover } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -35,4 +36,4 @@ const AppHeader = () => {
     );
 };
 
-export default AppHeader;
+export default memo(AppHeader);

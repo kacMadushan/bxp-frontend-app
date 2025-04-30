@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 
@@ -24,4 +25,4 @@ const AppLayout = () => {
     );
 };
 
-export default AppLayout;
+export default memo(AppLayout);
