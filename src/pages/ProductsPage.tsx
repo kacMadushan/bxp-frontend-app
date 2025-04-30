@@ -9,7 +9,7 @@ import ProductsTable from '../components/ProductsTable';
 
 const ProductsPage = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [pageSize, setPageSize] = useState<number>(5);
+    const [pageSize, setPageSize] = useState<number>(10);
 
     const { products, activeCategory, getCategoryById } = useProductsContext();
     const page = 1;
@@ -29,7 +29,6 @@ const ProductsPage = () => {
             (product) =>
                 product.name.toLowerCase().includes(searchQuery.toLowerCase()) && (activeCategory ? product.category_id === activeCategory : product)
         );
-    console.log(filteredProducts);
     return (
         <Card className='page-wrapper'>
             <ProductsFilterOption

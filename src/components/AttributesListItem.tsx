@@ -1,5 +1,5 @@
 import { Card, Flex, Typography, Button } from 'antd';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 
 import { AttributeValue } from '../types/attributeValue.interface';
 import { useProductsContext } from '../context/ProductsProvider';
