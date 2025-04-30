@@ -48,12 +48,12 @@ const ProductDetailsPage = () => {
                             {
                                 key: '2',
                                 label: 'Attributes',
-                                children: <AttributesList attributes={getProduct?.attributes} />
+                                children: <AttributesList productId={Number(getProduct?.id)} attributes={getProduct?.attributes} />
                             },
                             {
                                 key: '3',
                                 label: 'New Attribute',
-                                children: <AttributeForm />
+                                children: <AttributeForm productId={Number(getProduct?.id)} />
                             },
                         ]
                     }

@@ -2,20 +2,28 @@ import { Row, Col, Typography, Form, Input, Button, message } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
 
 import { IAttributeValue } from '../types/attributeValue.interface';
+import { useProductsContext } from '../context/ProductsProvider';
+
+interface AttributeFormProps {
+    productId: number
+}
 
 const { Title } = Typography;
 const FormItem = Form.Item;
 
-const AttributeForm = () => {
+const AttributeForm = ({ productId }: AttributeFormProps) => {
     const [displayMessage, displayMessageContext] = message.useMessage();
+    const [form] = Form.useForm();
+    const { createNewAttribute } = useProductsContext();
 
     const onSubmitAttributeForm = async (data: IAttributeValue) => {
         try {
-            console.log(data)
+            await createNewAttribute(productId, data)
             displayMessage.open({
                 type: 'success',
                 content: 'Success! Attribute added success'
             });
+            form.resetFields();
         } catch (error) {
             displayMessage.open({
                 type: 'error',
@@ -32,6 +40,7 @@ const AttributeForm = () => {
                 <Form
                     className='mt-4'
                     layout='vertical'
+                    form={form}
                     onFinish={onSubmitAttributeForm}
                 >
                     <FormItem

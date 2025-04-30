@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { Row, Col, Form, Input, Button } from 'antd';
+import { v4 as uuidv4 } from 'uuid';
+import { Row, Col, Form, Input, Select, Button, message } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
 
 import { IProduct } from '../types/product.interface';
+import { useProductsContext } from '../context/ProductsProvider';
+import { getIdNumber } from '../utils/helper';
 
 interface ProductFormProps {
     onSubmit: (product: IProduct) => Promise<void>;
@@ -11,21 +14,40 @@ interface ProductFormProps {
 const FormItem = Form.Item;
 
 const ProductForm = ({ onSubmit }: ProductFormProps) => {
+    const [displayMessage, displayMessageContext] = message.useMessage();
+    const [form] = Form.useForm();
+    const { categories } = useProductsContext();
     const navigate = useNavigate();
 
     const onSubmitProductForm = async (data: IProduct) => {
+        const newProduct: IProduct = {
+            id: getIdNumber,
+            name: data.name,
+            category_id: Number(data.category_id),
+            attributes: []
+        }
         try {
-            await onSubmit(data);
+            await onSubmit(newProduct);
             navigate('/products', { replace: true });
+            form.resetFields();
         } catch (error) {
-            console.log(error);
+            displayMessage.open({
+                type: 'error',
+                content: 'Sorry! product added failed'
+            });
         }
     };
+
+    const categoryOptions = categories.map((category) => ({
+        value: category.id,
+        label: category.name
+    }));
 
     return (
         <Row>
             <Col xs={24} lg={12}>
-                <Form layout='vertical' onFinish={onSubmitProductForm}>
+                {displayMessageContext}
+                <Form form={form} layout='vertical' onFinish={onSubmitProductForm}>
                     <FormItem
                         label='Product Name'
                         name='name'
@@ -35,13 +57,22 @@ const ProductForm = ({ onSubmit }: ProductFormProps) => {
                     </FormItem>
                     <FormItem
                         label='Category'
-                        name='category'
+                        name='category_id'
                         rules={[{ required: true, message: 'Please select category' }]}
                     >
-                        <Input />
+                        <Select
+                            className='h-10'
+                            placeholder="Select Per Page"
+                            optionFilterProp="label"
+                            options={categoryOptions}
+                        />
                     </FormItem>
                     <FormItem>
-                        <Button className='py-5 shadow-none hover:shadow-none' type='primary' htmlType='submit'>
+                        <Button
+                            className='py-5 shadow-none hover:shadow-none'
+                            type='primary'
+                            htmlType='submit'
+                        >
                             <SaveOutlined /> Save Product
                         </Button>
                     </FormItem>

@@ -1,6 +1,7 @@
 export const defaultTheme = {
     token: {
         colorPrimary: 'var(--clr_gray_1000)',
+        colorPrimaryBorder: 'var(--clr_gray_100)',
         fontFamily: 'var(--primary_font_family)'
     },
     components: {
@@ -32,6 +33,7 @@ export const defaultTheme = {
             darkItemHoverBg: 'var(--clr_gray_900)',
             darkItemSelectedBg: 'var(--clr_gray_900)',
             darkSubMenuItemBg: 'var(--clr_gray_1000)'
-        }
+        },
+
     }
 };

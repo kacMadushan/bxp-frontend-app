@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext, useMemo, useCallback, type ReactNode } from 'react';
 import { categories } from '../api/categories';
 import { products } from '../api/products';
+import { IAttributeValue } from '../types/attributeValue.interface';
 import { Category } from '../types/category.interface';
 import { IProduct } from '../types/product.interface';
 
@@ -10,6 +11,8 @@ interface IProductsContext {
     getCategoryById: (id: number) => Category | undefined;
     getProductById: (id: number) => IProduct | undefined;
     createNewProduct: (newProduct: IProduct) => Promise<void>;
+    createNewAttribute: (id: number, newAttribute: IAttributeValue) => Promise<void>;
+    removeAttribute: (id: number, removeCode: string) => void;
 }
 
 const ProductsContext = createContext<IProductsContext | undefined>(undefined);
@@ -24,6 +27,37 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     const createNewProduct = useCallback(async (newProduct: IProduct): Promise<void> => {
         setProducts([...products, newProduct]);
     }, [products]);
+
+    const createNewAttribute = useCallback(async (id: number, attribute: IAttributeValue): Promise<void> => {
+        const newAttribute = products.map((product) => {
+            if (product.id === id) {
+                return {
+                    ...product,
+                    attributes: [
+                        ...product.attributes,
+                        attribute
+                    ]
+                }
+            } else {
+                return product
+            }
+        })
+        setProducts(newAttribute)
+    }, [products]);
+
+    const removeAttribute = (id: number, removeCode: string) => {
+        const deleteAttribute = products.map((product) => {
+            if (product.id === id) {
+                return {
+                    ...product,
+                    attributes: product.attributes.filter((attribute) => attribute.code !== removeCode)
+                }
+            } else {
+                return product
+            }
+        })
+        setProducts(deleteAttribute);
+    };
 
     const getCategoryById = useCallback((id: number) => {
         return categories.find((category) => category.id === id)
@@ -42,8 +76,25 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
 
     const value = useMemo(() =>
     (
-        { categories, products, createNewProduct, getCategoryById, getProductById }
-    ), [categories, products, createNewProduct, getCategoryById, getProductById]);
+        {
+            categories,
+            products,
+            createNewProduct,
+            createNewAttribute,
+            removeAttribute,
+            getCategoryById,
+            getProductById
+        }
+    ), [
+        categories,
+        products,
+        createNewProduct,
+        createNewAttribute,
+        removeAttribute,
+        getCategoryById,
+        getProductById
+    ]
+    );
 
     return (
         <ProductsContext.Provider value={value}>

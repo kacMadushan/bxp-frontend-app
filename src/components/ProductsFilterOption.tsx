@@ -13,7 +13,14 @@ interface ProductsFilterOptionProps {
     onChangeSearchQuery?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ProductsFilterOption = ({ pageSize, searchQuery, onChangePageSize, onChangeSearchQuery }: ProductsFilterOptionProps) => {
+const ProductsFilterOption = (
+    {
+        pageSize,
+        searchQuery,
+        onChangePageSize,
+        onChangeSearchQuery
+    }: ProductsFilterOptionProps
+) => {
     return (
         <Flex className='mb-5 border-b border-gray_200' align='center' justify='space-between'>
             <Title level={3}>Products</Title>
