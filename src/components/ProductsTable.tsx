@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import { Table } from 'antd';
 
-import { IProduct } from '../types/product.interface';
+import { Product } from '../types/product.interface';
 import { Category } from '../types/category.interface';
 
 interface ProductsTableProps {
-    products: IProduct[];
+    products: Product[];
     getCategoryById: (id: number) => Category | undefined;
 }
 
 const ProductsTable = ({ products, getCategoryById }: ProductsTableProps) => {
-    const data: IProduct[] = products;
+    const data: Product[] = products;
     return (
         <Table
             columns={

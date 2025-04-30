@@ -1,34 +1,48 @@
 import { createContext, useState, useEffect, useContext, useMemo, useCallback, type ReactNode } from 'react';
 import { categories } from '../api/categories';
 import { products } from '../api/products';
-import { IAttributeValue } from '../types/attributeValue.interface';
+import { AttributeValue } from '../types/attributeValue.interface';
 import { Category } from '../types/category.interface';
-import { IProduct } from '../types/product.interface';
+import { Product } from '../types/product.interface';
 
 interface IProductsContext {
+    activeCategory: number | null;
     categories: Category[];
-    products: IProduct[];
+    products: Product[];
+    removeProduct: (id: number) => void;
+    getProductById: (id: number) => Product | undefined;
     getCategoryById: (id: number) => Category | undefined;
-    getProductById: (id: number) => IProduct | undefined;
-    createNewProduct: (newProduct: IProduct) => Promise<void>;
-    createNewAttribute: (id: number, newAttribute: IAttributeValue) => Promise<void>;
+    updateAttribute: (id: number, newAttribute: AttributeValue) => Promise<void>;
     removeAttribute: (id: number, removeCode: string) => void;
+    createNewProduct: (newProduct: Product) => Promise<void>;
+    createNewAttribute: (id: number, newAttribute: AttributeValue) => Promise<void>;
+    handleChangeActiveCategory: (key: number) => void;
 }
 
 const ProductsContext = createContext<IProductsContext | undefined>(undefined);
 
 const MOCK_CATEGORIES: Category[] = categories;
-const MOCK_PRODUCTS: IProduct[] = products;
+const MOCK_PRODUCTS: Product[] = products;
 
 export const ProductsProvider = ({ children }: { children: ReactNode }) => {
+    const [activeCategory, setActiveCategory] = useState<number | null>(null);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [products, setProducts] = useState<IProduct[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
-    const createNewProduct = useCallback(async (newProduct: IProduct): Promise<void> => {
+    const handleChangeActiveCategory = useCallback((key: number) => {
+        setActiveCategory(key)
+    }, []);
+
+    const createNewProduct = useCallback(async (newProduct: Product): Promise<void> => {
         setProducts([...products, newProduct]);
     }, [products]);
 
-    const createNewAttribute = useCallback(async (id: number, attribute: IAttributeValue): Promise<void> => {
+    const removeProduct = useCallback((id: number) => {
+        const removeProductItem = products.filter((product) => product.id !== id);
+        setProducts(removeProductItem)
+    }, [products]);
+
+    const createNewAttribute = useCallback(async (id: number, attribute: AttributeValue): Promise<void> => {
         const newAttribute = products.map((product) => {
             if (product.id === id) {
                 return {
@@ -45,7 +59,34 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
         setProducts(newAttribute)
     }, [products]);
 
-    const removeAttribute = (id: number, removeCode: string) => {
+    const updateAttribute = useCallback(async (
+        productId: number,
+        updatedAttribute: Partial<AttributeValue>
+    ): Promise<void> => {
+        const updatedProducts = products.map((product) => {
+            if (product.id === productId) {
+                const updatedAttributes = product.attributes.map((attr) => {
+                    if (attr.code === updatedAttribute.code) {
+                        return {
+                            ...attr,
+                            ...updatedAttribute
+                        };
+                    }
+                    return attr;
+                });
+
+                return {
+                    ...product,
+                    attributes: updatedAttributes
+                };
+            }
+            return product;
+        });
+
+        setProducts(updatedProducts);
+    }, [products]);
+
+    const removeAttribute = useCallback((id: number, removeCode: string) => {
         const deleteAttribute = products.map((product) => {
             if (product.id === id) {
                 return {
@@ -57,7 +98,7 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
             }
         })
         setProducts(deleteAttribute);
-    };
+    }, [products]);
 
     const getCategoryById = useCallback((id: number) => {
         return categories.find((category) => category.id === id)
@@ -77,22 +118,30 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     const value = useMemo(() =>
     (
         {
+            activeCategory,
             categories,
             products,
             createNewProduct,
             createNewAttribute,
             removeAttribute,
+            removeProduct,
+            updateAttribute,
             getCategoryById,
-            getProductById
+            getProductById,
+            handleChangeActiveCategory
         }
     ), [
+        activeCategory,
         categories,
         products,
         createNewProduct,
         createNewAttribute,
         removeAttribute,
+        removeProduct,
+        updateAttribute,
         getCategoryById,
-        getProductById
+        getProductById,
+        handleChangeActiveCategory
     ]
     );
 

@@ -1,4 +1,4 @@
-export interface IAttributeValue {
+export interface AttributeValue {
     code: string
     value: any
 }

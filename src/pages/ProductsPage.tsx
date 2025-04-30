@@ -1,8 +1,7 @@
 import { useState, ChangeEvent } from 'react';
-import { useParams } from 'react-router-dom';
 import { Card } from 'antd';
 
-import { IProduct } from '../types/product.interface';
+import { Product } from '../types/product.interface';
 import { useProductsContext } from '../context/ProductsProvider';
 
 import ProductsFilterOption from '../components/ProductsFilterOption';
@@ -12,8 +11,7 @@ const ProductsPage = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [pageSize, setPageSize] = useState<number>(5);
 
-    const { category } = useParams();
-    const { products, getCategoryById } = useProductsContext();
+    const { products, activeCategory, getCategoryById } = useProductsContext();
     const page = 1;
 
     const onChangePageSize = (size: number) => {
@@ -24,12 +22,14 @@ const ProductsPage = () => {
         setSearchQuery(e.target.value);
     };
 
-    const filteredProducts: IProduct[] = products
+    // Filter products - (search, category, page count)
+    const filteredProducts: Product[] = products
         .slice((page - 1) * pageSize, page * pageSize)
         .filter(
-            (product) => product.name.toLowerCase().includes(searchQuery.toLowerCase())
+            (product) =>
+                product.name.toLowerCase().includes(searchQuery.toLowerCase())
         );
-    console.log(category)
+    console.log(filteredProducts);
     return (
         <Card className='page-wrapper'>
             <ProductsFilterOption

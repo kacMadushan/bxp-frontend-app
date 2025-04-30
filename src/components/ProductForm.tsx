@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import { Row, Col, Form, Input, Select, Button, message } from 'antd';
 import { SaveOutlined } from '@ant-design/icons';
 
-import { IProduct } from '../types/product.interface';
+import { Product } from '../types/product.interface';
 import { useProductsContext } from '../context/ProductsProvider';
 import { getIdNumber } from '../utils/helper';
 
 interface ProductFormProps {
-    onSubmit: (product: IProduct) => Promise<void>;
+    onSubmit: (product: Product) => Promise<void>;
 }
 
 const FormItem = Form.Item;
@@ -19,8 +18,8 @@ const ProductForm = ({ onSubmit }: ProductFormProps) => {
     const { categories } = useProductsContext();
     const navigate = useNavigate();
 
-    const onSubmitProductForm = async (data: IProduct) => {
-        const newProduct: IProduct = {
+    const onSubmitProductForm = async (data: Product) => {
+        const newProduct: Product = {
             id: getIdNumber,
             name: data.name,
             category_id: Number(data.category_id),

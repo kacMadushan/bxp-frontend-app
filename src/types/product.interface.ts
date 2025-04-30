@@ -1,8 +1,8 @@
-import { IAttributeValue } from './attributeValue.interface';
+import { AttributeValue } from './attributeValue.interface';
 
-export interface IProduct {
+export interface Product {
     id: number;
     name: string;
     category_id: number;
-    attributes: IAttributeValue[];
+    attributes: AttributeValue[];
 }

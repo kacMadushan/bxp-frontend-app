@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Typography, message } from 'antd';
 
-import { ICredentials } from '../types/user.interface';
+import { Credentials } from '../types/user.interface';
 import { useAuthContext } from '../context/AuthProvider';
 import { user_data } from '../utils/constants';
 
@@ -15,7 +15,7 @@ const LoginForm = () => {
     const { userLogin } = useAuthContext();
     const navigate = useNavigate();
 
-    const onSubmitLogin = async (credentials: ICredentials) => {
+    const onSubmitLogin = async (credentials: Credentials) => {
         try {
             await userLogin(credentials);
             navigate('/products', { replace: true });

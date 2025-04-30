@@ -1,5 +1,5 @@
 import { memo, lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 import Spinner from './components/Spinner';
 import PrivateRoute from './components/PrivateRoute';
@@ -22,6 +22,7 @@ const App = () => {
     return (
         <Suspense fallback={<Spinner />}>
             <Routes>
+                <Route path='/' element={<Navigate to='/products' replace />} />
                 <Route element={renderAppLayout} errorElement={<NotFoundPage />}>
                     <Route path='/products' element={<ProductsPage />} />
                     <Route path='/products/category/:category' element={<ProductsPage />} />

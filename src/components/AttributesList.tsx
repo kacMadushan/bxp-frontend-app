@@ -1,15 +1,15 @@
-import { Card, Typography } from 'antd';
+import { Typography } from 'antd';
 
-import { IAttributeValue } from '../types/attributeValue.interface';
+import { AttributeValue } from '../types/attributeValue.interface';
 
 import AttributesListItem from './AttributesListItem';
 
 interface AttributesListProps {
-    attributes: IAttributeValue[] | undefined;
+    attributes: AttributeValue[] | undefined;
     productId: number
 }
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const AttributesList = ({ attributes, productId }: AttributesListProps) => {
     return (

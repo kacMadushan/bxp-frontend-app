@@ -66,50 +66,54 @@ export const products = [
     },
     {
         id: 4,
-        name: 'iPhone 16 Pro',
+        name: 'iPhone 16 Pro Max',
         category_id: 6,
         attributes: [
             {
-                code: 'Storage',
-                value: '128GB'
+                code: 'Ram/Memory',
+                value: '8GB + 512GB'
             },
             {
-                code: 'Display',
-                value: '6.3-inch'
+                code: 'Display Size',
+                value: '6.9 inches'
             },
             {
                 code: 'Colors',
-                value: '4'
+                value: 'Black'
             }
         ]
     },
     {
         id: 5,
-        name: 'iPhone 16 Pro',
+        name: 'Samsung Galaxy S25',
         category_id: 6,
         attributes: [
             {
                 code: 'Storage',
-                value: '128GB'
+                value: '256GB'
             },
             {
-                code: 'Display',
-                value: '6.3-inch'
+                code: 'Display Size',
+                value: '6.2 inches'
             },
             {
                 code: 'Colors',
-                value: '4'
+                value: 'Navy'
             }
         ]
     },
     {
         id: 6,
-        name: 'iPhone 16 Pro',
+        name: 'Honor X9C',
         category_id: 6,
         attributes: [
             {
                 code: 'Storage',
                 value: '128GB'
+            },
+            {
+                code: 'Ram',
+                value: '12GB'
             },
             {
                 code: 'Display',
@@ -123,46 +127,46 @@ export const products = [
     },
     {
         id: 7,
-        name: 'iPhone 16 Pro',
-        category_id: 6,
+        name: 'Tefal Steam Irons',
+        category_id: 9,
         attributes: [
             {
-                code: 'Storage',
-                value: '128GB'
+                code: 'Voltage',
+                value: '230'
             },
             {
-                code: 'Display',
-                value: '6.3-inch'
+                code: 'Weight',
+                value: '1290 Grams'
             },
             {
                 code: 'Colors',
-                value: '4'
+                value: 'Blue'
             }
         ]
     },
     {
         id: 8,
-        name: 'iPhone 16 Pro',
-        category_id: 6,
+        name: 'Drum Vacuum Cleaner',
+        category_id: 9,
         attributes: [
             {
-                code: 'Storage',
-                value: '128GB'
+                code: 'Type',
+                value: 'Wet & Dry'
             },
             {
-                code: 'Display',
-                value: '6.3-inch'
+                code: 'Capacity',
+                value: '30 Liters'
             },
             {
-                code: 'Colors',
-                value: '4'
+                code: 'Weight',
+                value: '9Kg'
             }
         ]
     },
     {
         id: 9,
-        name: 'iPhone 16 Pro',
-        category_id: 6,
+        name: 'Top Gas Cooker',
+        category_id: 10,
         attributes: [
             {
                 code: 'Storage',
@@ -181,7 +185,7 @@ export const products = [
     {
         id: 10,
         name: 'iPhone 16 Pro',
-        category_id: 6,
+        category_id: 10,
         attributes: [
             {
                 code: 'Storage',

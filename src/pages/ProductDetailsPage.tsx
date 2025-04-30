@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Tabs } from 'antd';
 
-import { IProduct } from '../types/product.interface';
+import { Product } from '../types/product.interface';
 import { useProductsContext } from '../context/ProductsProvider';
 
 import Spinner from '../components/Spinner';
@@ -13,11 +13,11 @@ import AttributeForm from '../components/AttributeForm';
 
 const ProductDetailsPage = () => {
     const { productId } = useParams();
-    const { getProductById, getCategoryById } = useProductsContext();
+    const { getProductById, getCategoryById, removeProduct, createNewAttribute } = useProductsContext();
     const id = Number(productId);
 
     const [loading, setLoading] = useState(true);
-    const [product, setProduct] = useState<IProduct | null>(null);
+    const [product, setProduct] = useState<Product | null>(null);
 
     useEffect(() => {
         setLoading(true);
@@ -43,17 +43,33 @@ const ProductDetailsPage = () => {
                             {
                                 key: '1',
                                 label: 'Details',
-                                children: <ProductDetailsView getCategoryById={getCategoryById} product={getProduct} />
+                                children: (
+                                    <ProductDetailsView
+                                        removeProduct={removeProduct}
+                                        getCategoryById={getCategoryById}
+                                        product={getProduct}
+                                    />
+                                )
                             },
                             {
                                 key: '2',
                                 label: 'Attributes',
-                                children: <AttributesList productId={Number(getProduct?.id)} attributes={getProduct?.attributes} />
+                                children: (
+                                    <AttributesList
+                                        productId={Number(getProduct?.id)}
+                                        attributes={getProduct?.attributes}
+                                    />
+                                )
                             },
                             {
                                 key: '3',
                                 label: 'New Attribute',
-                                children: <AttributeForm productId={Number(getProduct?.id)} />
+                                children: (
+                                    <AttributeForm
+                                        productId={Number(getProduct?.id)}
+                                        onSubmit={createNewAttribute}
+                                    />
+                                )
                             },
                         ]
                     }

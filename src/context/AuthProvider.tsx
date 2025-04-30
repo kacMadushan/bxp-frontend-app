@@ -6,17 +6,17 @@ import {
     useMemo,
     type ReactNode
 } from 'react';
-import { ICredentials, IUser } from '../types/user.interface';
+import { Credentials, User } from '../types/user.interface';
 import { user_data } from '../utils/constants';
 
 interface IAuthContext {
-    user: IUser | null;
+    user: User | null;
     isAuthenticated: boolean;
-    userLogin: (credentials: ICredentials) => Promise<void>;
+    userLogin: (credentials: Credentials) => Promise<void>;
     userLogout: () => void;
 }
 
-const mock_user: IUser = {
+const mock_user: User = {
     id: 1,
     email: 'admin@domain.com',
     name: 'Admin User'
@@ -25,10 +25,10 @@ const mock_user: IUser = {
 const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<IUser | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-    const userLogin = async (credentials: ICredentials): Promise<void> => {
+    const userLogin = async (credentials: Credentials): Promise<void> => {
         return new Promise((resolve, reject) => {
             if (credentials.email === user_data.email && credentials.password === user_data.password) {
                 setUser(mock_user);
