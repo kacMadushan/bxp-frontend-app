@@ -16,7 +16,10 @@ root.render(
     <AuthProvider>
         <ProductsProvider>
             <ConfigProvider theme={defaultTheme}>
-                <Router>
+                <Router future={{
+                    v7_relativeSplatPath: true,
+                    v7_startTransition: true,
+                }}>
                     <App />
                 </Router>
             </ConfigProvider>
